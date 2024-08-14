@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 13 09:32:03 2024
-
-@author: fundlab15
-"""
-
 ################### Latest File ############################
 import os
 import cv2
@@ -25,16 +17,12 @@ from numpy import dot
 def HIK3(arg):
     Xm, Yn, K = arg[0], arg[1], arg[2]
     submat = np.ndarray(shape=(len(Xm), len(Yn)), dtype=float)
-    m1 = 9999
-    m2 = -9999
     for i in range(len(Xm)):
         for j in range(len(Yn)):
             #submat[i][j] = np.true_divide(np.sum(np.minimum(Xm[i], Yn[j])), K)
             submat[i][j] = np.sum(np.minimum(Xm[i], Yn[j]))
-            if submat[i][j] < m1:
-                m1 = submat[i][j]
-            if submat[i][j] > m2:
-                m2 = submat[i][j]
+     m1=np.min(submat)
+     m2=np.max(submat)
     return [submat, m1, m2]
 
     
